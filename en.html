@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyMeds — Support & Privacy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --navy:        #3D5578;
+    --navy-deep:   #28374F;
+    --navy-soft:   #6D82A3;
+    --gold:        #D89A2B;
+    --gold-light:  #F0C878;
+    --cream:       #EFE9E1;
+    --cream-deep:  #E3DACD;
+    --paper:       #FAF7F2;
+    --ink:         #2B2A26;
+    --ink-soft:    #6B675E;
+    --line:        #DCD3C4;
+    --warm-alert:  #B5583F;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  section{padding:0 24px;}
+
+  /* ---------- TOP NAV ---------- */
+  .topnav{
+    background:rgba(239,233,225,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:50;
+  }
+  .topnav-inner{
+    max-width:840px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand-mark{ width:30px; height:30px; }
+  .brand-name{ font-family:'Fraunces',serif; font-weight:600; font-size:18px; color:var(--navy-deep); }
+  .topnav-links{ display:flex; align-items:center; gap:28px; }
+  .topnav-links a{ font-size:14px; font-weight:700; color:var(--ink-soft); text-decoration:none; }
+  .topnav-links a:hover{ color:var(--navy-deep); }
+  .lang-switch{ display:flex; gap:6px; border-left:1px solid var(--line); padding-left:22px; margin-left:6px; }
+  .lang-switch a{ font-size:12.5px; font-weight:800; padding:5px 10px; border-radius:8px; color:var(--ink-soft); }
+  .lang-switch a.active{ background:var(--navy); color:var(--paper); }
+
+  /* ---------- HEADER ---------- */
+  header{
+    padding:72px 24px 48px;
+    text-align:center;
+    background: radial-gradient(circle at 80% 0%, rgba(216,154,43,0.10), transparent 50%),
+                linear-gradient(165deg, var(--cream) 0%, var(--cream-deep) 100%);
+  }
+  .app-icon{
+    width:104px; height:104px; border-radius:24px;
+    box-shadow:0 20px 40px -14px rgba(40,55,79,0.35);
+    margin-bottom:24px;
+  }
+  header h1{
+    font-family:'Fraunces',serif; font-weight:600; font-size:44px;
+    color:var(--navy-deep); margin-bottom:12px; letter-spacing:-0.01em;
+  }
+  header p.tagline{ font-size:17px; color:var(--ink-soft); margin-bottom:36px; }
+
+  .download-row{
+    display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:10px;
+  }
+  .dl-btn{
+    display:flex; align-items:center; gap:11px;
+    padding:12px 22px; border-radius:14px;
+    text-decoration:none; min-width:200px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .dl-btn:hover{ transform:translateY(-2px); }
+  .dl-btn.ios{ background:var(--navy-deep); box-shadow:0 12px 26px -10px rgba(40,55,79,0.5); }
+  .dl-btn.android{ background:var(--paper); border:1.5px solid var(--line); opacity:.65; cursor:default; }
+  .dl-btn.android:hover{ transform:none; }
+  .dl-text{ display:flex; flex-direction:column; align-items:flex-start; }
+  .dl-label{ font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  .dl-btn.ios .dl-label{ color:rgba(250,247,242,0.65); }
+  .dl-btn.android .dl-label{ color:var(--ink-soft); }
+  .dl-store{ font-size:16px; font-weight:800; }
+  .dl-btn.ios .dl-store{ color:var(--paper); }
+  .dl-btn.android .dl-store{ color:var(--ink-soft); }
+  .coming-soon-note{ font-size:12.5px; color:var(--ink-soft); font-style:italic; }
+
+  /* ---------- SCREENSHOT SHOWCASE ---------- */
+  .showcase-wrap{
+    background:var(--cream-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:32px 0;
+  }
+  .showcase-strip{
+    display:flex; gap:26px; overflow-x:auto;
+    padding:0 24px 8px; scroll-snap-type:x proximity;
+    max-width:1100px; margin:0 auto;
+  }
+  .showcase-strip img{
+    height:640px; flex:0 0 auto; border-radius:22px;
+    box-shadow:0 24px 50px -18px rgba(40,55,79,0.40);
+    scroll-snap-align:start;
+  }
+
+  /* ---------- SECTION NAV (pill tabs) ---------- */
+  .section-nav-wrap{ display:flex; justify-content:center; padding:36px 24px 0; }
+  .section-nav{
+    display:inline-flex; gap:4px; background:var(--paper); border:1px solid var(--line);
+    border-radius:16px; padding:5px;
+  }
+  .section-nav a{
+    font-size:14.5px; font-weight:700; color:var(--ink-soft);
+    padding:11px 26px; border-radius:12px; text-decoration:none;
+  }
+  .section-nav a.active{ background:var(--navy); color:var(--paper); }
+
+  /* ---------- MAIN ---------- */
+  main{ max-width:760px; margin:0 auto; padding:56px 24px 100px; }
+
+  .page-section{ margin-bottom:70px; scroll-margin-top:90px; }
+  .eyebrow{
+    display:inline-block; font-size:12px; font-weight:800; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:14px;
+  }
+  h2.section-title{
+    font-family:'Fraunces',serif; font-weight:600; font-size:32px;
+    color:var(--navy-deep); margin-bottom:18px;
+  }
+  .lede{ font-size:16px; color:var(--ink-soft); margin-bottom:36px; max-width:600px; }
+
+  .card{
+    background:var(--paper); border:1.2px solid var(--line); border-radius:18px;
+    padding:28px 30px; margin-bottom:20px;
+  }
+  h3{
+    font-family:'Fraunces',serif; font-weight:600; font-size:19px;
+    color:var(--navy-deep); margin:30px 0 12px;
+  }
+  .card h3:first-child{ margin-top:0; }
+  p{ font-size:15px; color:var(--ink); margin-bottom:12px; line-height:1.75; }
+  p.meta{ font-size:13px; color:var(--ink-soft); }
+  ul{ padding-left:22px; margin-bottom:14px; }
+  li{ font-size:15px; color:var(--ink); margin-bottom:7px; line-height:1.7; }
+  strong{ color:var(--navy-deep); font-weight:700; }
+  a.inline-link{ color:var(--navy); font-weight:700; text-decoration:underline; text-decoration-color:var(--line); }
+
+  .faq-item{ margin-bottom:26px; }
+  .faq-item:last-child{ margin-bottom:0; }
+  .faq-q{ font-weight:800; color:var(--navy-deep); margin-bottom:6px; font-size:15.5px; }
+
+  .contact-card{
+    background:var(--cream-deep); border-radius:16px; padding:22px 26px; margin-top:8px;
+  }
+  .contact-card a{ color:var(--navy); font-weight:800; text-decoration:none; }
+  .contact-card .note{ font-size:12.5px; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center; padding:36px 24px; border-top:1px solid var(--line);
+    background:var(--paper); font-size:13px; color:var(--ink-soft);
+  }
+  footer a{ color:var(--navy); font-weight:700; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="en.html">
+      <span class="brand-name">MyMeds</span>
+    </a>
+    <div class="topnav-links">
+      <a href="#support">Support</a>
+      <a href="#privacy">Privacy</a>
+      <div class="lang-switch">
+        <a href="index.html">IT</a>
+        <a href="en.html" class="active">EN</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <img class="app-icon" src="assets/icon.png" alt="My Meds icon">
+  <h1>My Meds</h1>
+  <p class="tagline">Manage your medications simply and calmly</p>
+
+  <div class="download-row">
+    <a class="dl-btn ios" href="https://apps.apple.com/app/id6759520324">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#FAF7F2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span class="dl-text"><span class="dl-label">Download on the</span><span class="dl-store">App Store</span></span>
+    </a>
+    <a class="dl-btn android" title="Coming soon on Android">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#6B675E"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 10.1867.3432 13.2589 0 17h24c-.3435-3.7411-2.6892-6.8133-6.1185-7.6786"/></svg>
+      <span class="dl-text"><span class="dl-label">Available on</span><span class="dl-store">Google Play</span></span>
+    </a>
+  </div>
+  <p class="coming-soon-note">Android — coming soon</p>
+</header>
+
+<div class="showcase-wrap">
+  <div class="showcase-strip">
+    <img src="assets/en/01_home.png" alt="My Meds home screen" loading="lazy">
+    <img src="assets/en/02_todays.png" alt="Today's doses in My Meds" loading="lazy">
+    <img src="assets/en/03_family.png" alt="Family management in My Meds" loading="lazy">
+    <img src="assets/en/04_adherence.png" alt="Adherence tracking in My Meds" loading="lazy">
+    <img src="assets/en/05_themes.png" alt="Themes in My Meds" loading="lazy">
+    <img src="assets/en/06_refills.png" alt="Requesting refills in My Meds" loading="lazy">
+    <img src="assets/en/07_report.png" alt="Medical report in My Meds" loading="lazy">
+  </div>
+</div>
+
+<div class="section-nav-wrap">
+  <div class="section-nav">
+    <a href="#support" class="active">Support</a>
+    <a href="#privacy">Privacy Policy</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- SUPPORT -->
+  <div class="page-section" id="support">
+    <div class="eyebrow">Support</div>
+    <h2 class="section-title">Need help?</h2>
+    <p class="lede">We're here for it. Whether you have a quick question, a technical issue, or an idea to make My Meds better, just write to us — we read everything.</p>
+
+    <div class="card">
+      <h3>How to reach us</h3>
+      <div class="contact-card">
+        <a href="mailto:mymeds.support&#64;gmail.com">mymeds.support&#64;gmail.com</a>
+        <p class="note">We reply within 48 hours on business days.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Frequently asked questions</h3>
+
+      <div class="faq-item">
+        <div class="faq-q">Is my data safe?</div>
+        <p>Yes. Everything you enter in My Meds — medications, dosages, supplies — stays exclusively on your device. We never send it to external servers.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How does Premium work?</div>
+        <p>The free version already includes all of the app's core features. Premium removes ads, unlocks Home Screen widgets — so you can see your next dose and refill countdown without even opening the app — and gives you access to additional themes to personalize the app's look.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How can I delete all my data?</div>
+        <p>Just uninstall the app from your device — since your data lives only there, it's removed along with it.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Does the app work without an internet connection?</div>
+        <p>Yes, My Meds works completely offline. A connection is only needed to load ads.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="page-section" id="privacy">
+    <div class="eyebrow">Privacy Policy</div>
+    <h2 class="section-title">Privacy Policy</h2>
+    <p class="meta" style="margin-bottom:30px;">Last updated: March 14, 2026</p>
+
+    <div class="card">
+      <h3>Who we are</h3>
+      <p>My Meds is an app developed by Erica Montani. This policy plainly explains how the data of anyone using the app is handled.</p>
+
+      <h3>Data collected by the app</h3>
+      <p>My Meds does not collect, transmit, or share any personal data you enter. Medications, dosages, and supplies stay saved locally on your device and are never accessible to third parties.</p>
+
+      <h3>Advertising and data collected by third parties (Google AdMob)</h3>
+      <p>The free version of My Meds shows ads through Google AdMob. AdMob may collect:</p>
+      <ul>
+        <li>Device identifiers (IDFA), for ad personalization</li>
+        <li>App usage data, to measure ad performance</li>
+        <li>Approximate location, for geographically relevant ads</li>
+        <li>Diagnostic and crash data</li>
+      </ul>
+      <p>This data is handled by Google under its own privacy policy, available at <a class="inline-link" href="https://policies.google.com/privacy">policies.google.com/privacy</a>.</p>
+
+      <h3>Tracking authorization (ATT)</h3>
+      <p>In line with Apple's App Tracking Transparency rules, My Meds asks for your consent before accessing the device's advertising identifier. You can deny or revoke it at any time from Settings → Privacy & Security → Tracking.</p>
+
+      <h3>In-app purchases</h3>
+      <p>Premium is purchased through Apple's in-app purchases. My Meds does not collect or store any payment data — everything is handled directly by Apple, under its own terms.</p>
+
+      <h3>Children</h3>
+      <p>My Meds is not intended for children under 13 and does not knowingly collect data from minors.</p>
+
+      <h3>Changes to this policy</h3>
+      <p>If this policy changes, the new version will be posted here, along with the update date.</p>
+
+      <h3>Contact</h3>
+      <div class="contact-card">
+        <a href="mailto:mymeds.support&#64;gmail.com">mymeds.support&#64;gmail.com</a>
+        <p class="note">For any questions about privacy.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Erica Montani · My Meds · <a href="index-landing.html">mymeds.app</a></p>
+</footer>
+
+</body>
+</html>
